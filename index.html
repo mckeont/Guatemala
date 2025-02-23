@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Guatemala Trip</title>
+    <title>Interactive Map with Dynamic Media Grid</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
     <style>
@@ -17,7 +17,7 @@
 
         /* MAKE THE MAP RESPONSIVE */
         #map {
-            height: 60vh; /* 60% of screen height */
+            height: 50vh; /* 50% of screen height */
             width: 90%;
             margin: auto;
         }
@@ -69,20 +69,20 @@
 </head>
 <body>
 
-    <h2>Click on a point to view photos and videos from Guatemala</h2>
+    <h2>Click on a Point to View Media</h2>
     <div id="map"></div>
     <h3 id="locationTitle">Select a Location</h3>
     <div id="imageGrid"></div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-        var map = L.map('map').setView([15.85, -90], 7);
+        var map = L.map('map').setView([15.5, -90], 7);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
 
-        var apiUrl = "https://script.google.com/macros/s/AKfycbyKVmyY6r-vLSgJoBZyAZvjfvtxVL-6Zfyyau5DfGMT04LQsdd3uOdAEZP5CF5ZNora/exec"; 
+        var apiUrl = "https://script.google.com/macros/s/AKfycbw177zU3aLQ2YHb52_ATCKmHiNmpvdARipY8_BL_qKOmDiq29TbzEUIgCtgpjbANA-x/exec"; 
         
         var locations = [
             { name: "Guatemala City", coords: [14.6349, -90.5069], folder: "Guatemala City" },
