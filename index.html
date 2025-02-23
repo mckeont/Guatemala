@@ -103,40 +103,31 @@
         });
 
         function fetchImages(folderName) {
-            document.getElementById("locationTitle").innerText = "Loading media...";
-            fetch(apiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    var media = data[folderName] || [];
-                    var mediaGrid = document.getElementById("imageGrid");
-                    mediaGrid.innerHTML = ""; // Clear previous content
+    document.getElementById("locationTitle").innerText = "Loading media...";
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            var media = data[folderName] || [];
+            var mediaGrid = document.getElementById("imageGrid");
+            mediaGrid.innerHTML = ""; // Clear previous content
 
-                    media.forEach(item => {
-                        let mediaElement;
-                        if (item.type === "image") {
-                            // Create an image element
-                            mediaElement = document.createElement("img");
-                            mediaElement.src = item.url;
-                            mediaElement.className = "grid-item";
-                        } else if (item.type === "video") {
-                            // Create a video element
-                            mediaElement = document.createElement("video");
-                            mediaElement.src = item.url;
-                            mediaElement.className = "grid-item";
-                            mediaElement.controls = true;
-                            mediaElement.autoplay = false; // Prevent autoplay for mobile users
-                        }
+            // Filter out videos and keep only images
+            media.filter(item => item.type === "image").forEach(item => {
+                let mediaElement = document.createElement("img");
+                mediaElement.src = item.url;
+                mediaElement.className = "grid-item";
 
-                        mediaElement.onclick = function() {
-                            window.open(item.url, '_blank'); // Open full media
-                        };
-                        mediaGrid.appendChild(mediaElement);
-                    });
+                mediaElement.onclick = function() {
+                    window.open(item.url, '_blank'); // Open full media
+                };
+                mediaGrid.appendChild(mediaElement);
+            });
 
-                    document.getElementById("locationTitle").innerText = `Media from ${folderName}`;
-                })
-                .catch(error => console.error("Error fetching media:", error));
-        }
+            document.getElementById("locationTitle").innerText = `Media from ${folderName}`;
+        })
+        .catch(error => console.error("Error fetching media:", error));
+}
+
     </script>
 
 </body>
